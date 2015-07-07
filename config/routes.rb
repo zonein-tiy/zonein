@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
-  get 'athletes/index'
 
-  get 'athletes/show'
+  resources :athletes
+  # get 'athletes/index'
 
-  get 'athletes/new'
+  # get 'athletes/show'
 
-  get 'athletes/create'
+  # get 'athletes/new'
 
-  get 'athletes/edit'
+  # get 'athletes/create'
 
-  get 'athletes/update'
+  # get 'athletes/edit'
 
-  get 'athletes/destroy'
+  # get 'athletes/update'
+
+  # get 'athletes/destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
