@@ -1,0 +1,1 @@
+json.(@athlete, :username, :email, :password, :access_token)
