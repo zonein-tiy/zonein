@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   post 'athletes/signin', to: 'athletes#signin'
   post 'athletes/signup', to: 'athletes#signup'
   patch 'athletes/register', to: 'athletes#register'
+  resources :teams
   resources :athletes
+  resources :plans
+  resources :workouts
 
   # resources :athletes do
   #   resources :plans, only: [:index, :new, :create]
