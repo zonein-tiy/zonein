@@ -33,6 +33,7 @@ before_action :authenticate_with_token!, only: [:register, :signin]
   def signin
     @athlete = Athlete.find_by(email: params[:email])
     passhash = Digest::SHA1.hexdigest(params[:password])
+    # binding.pry
     if @athlete && passhash == @athlete.password
       render 'signin.json.jbuilder',
         status: :created
