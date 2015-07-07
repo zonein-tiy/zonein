@@ -1,6 +1,6 @@
 class AthletesController < ApplicationController
 # skip_before_filter  :verify_authenticity_token
-before_action :authenticate_with_token!, only: [:register, :signin]
+before_action :authenticate_with_token!, only: [:register]
 
   def signup
     @athlete = Athlete.new(username: params[:username],
