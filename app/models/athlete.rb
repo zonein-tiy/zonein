@@ -7,7 +7,7 @@ class Athlete < ActiveRecord::Base
   #                             message: "is not a valid email" }
   # validates :username, uniqueness: true, presence: true
 
-  # before_validation :ensure_access_token
+  before_validation :ensure_access_token
 
       # has_many :plans
       # has_many :workouts, through: :plans

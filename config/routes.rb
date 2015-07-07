@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
-
+  
+  post 'athletes/signin', to: 'athletes#signin'
+  post 'athletes/signup', to: 'athletes#signup'
+  patch 'athletes/register', to: 'athletes#register'
   resources :athletes
+
+
+
+#         Prefix Verb   URI Pattern                  Controller#Action
+#     athletes GET    /athletes(.:format)          athletes#index
+#              POST   /athletes(.:format)          athletes#create
+#  new_athlete GET    /athletes/new(.:format)      athletes#new
+# edit_athlete GET    /athletes/:id/edit(.:format) athletes#edit
+#      athlete GET    /athletes/:id(.:format)      athletes#show
+#              PATCH  /athletes/:id(.:format)      athletes#update
+#              PUT    /athletes/:id(.:format)      athletes#update
+#              DELETE /athletes/:id(.:format)      athletes#destroy
+
   # get 'athletes/index'
 
   # get 'athletes/show'
