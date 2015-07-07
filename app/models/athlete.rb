@@ -3,7 +3,7 @@ class Athlete < ActiveRecord::Base
 
   validates :password, presence: true
   # , length: {minimum: 6}
-  validates_length_of :password, :minimum => 6
+  validates_length_of :password, minimum: 8
   validates :email, uniqueness: true, presence: true
   validates :email, format: { with: EMAIL_REGEX,
                               message: "is not a valid email" }
@@ -11,6 +11,7 @@ class Athlete < ActiveRecord::Base
   validates :access_token, presence: true
 
   before_validation :ensure_access_token
+  before_save :encrypt_password
 
       # has_many :plans
       # has_many :workouts, through: :plans
@@ -27,5 +28,12 @@ class Athlete < ActiveRecord::Base
       token = SecureRandom.hex
     end
     token
+  end
+
+  private
+  def encrypt_password
+    # if we don't have a hashed password, hash it!
+    digested = self.password.length == 40
+    self.update(password: Digest::SHA1.hexdigest(self.password)) unless digested
   end
 end

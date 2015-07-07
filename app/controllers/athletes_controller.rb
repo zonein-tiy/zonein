@@ -1,21 +1,17 @@
 class AthletesController < ApplicationController
+# skip_before_filter  :verify_authenticity_token
 before_action :authenticate_with_token!, only: [:register]
 
   def signup
-    #@password = params[:password]
-    # if @password.valid?
-      passhash = Digest::SHA1.hexdigest(params[:password])
-      @athlete = Athlete.new(username: params[:username], email: params[:email], password: passhash)
+    @athlete = Athlete.new(username: params[:username],
+                           email: params[:email],
+                           password: params[:password])
+    if @athlete.save
+      render 'signup.json.jbuilder', status: :created
+    else
+      render json: { errors: @athlete.errors.full_messages }, status: :unprocessable_entity
+    end
 
-      if @athlete.save
-        render 'signup.json.jbuilder', status: :created
-      else
-        render json: { errors: @athlete.errors.full_messages }, status: :unprocessable_entity
-      end
-    # else
-    #   render json: { message: "Invalid password. Must be at least 6 characters" },
-    #     status: :not_acceptable
-    # end
   end
 
   def register

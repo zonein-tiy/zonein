@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #   resources :plans, only: [:index, :new, :create]
   # end
 
-  # resources :plans, only: [:show, :edit, :update, :destroy]
+  # # resources :plans, only: [:show, :edit, :update, :destroy]
 
   # get 'teams', to: 'teams#index'
   # get 'team/:team_id', to: 'teams#show'
