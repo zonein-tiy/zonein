@@ -5,6 +5,30 @@ Rails.application.routes.draw do
   patch 'athletes/register', to: 'athletes#register'
   resources :athletes
 
+  # resources :athletes do
+  #   resources :plans, only: [:index, :new, :create]
+  # end
+
+  # resources :plans, only: [:show, :edit, :update, :destroy]
+
+  # get 'teams', to: 'teams#index'
+  # get 'team/:team_id', to: 'teams#show'
+  # get 'teams/new,', to: 'teams#new'
+  # post 'teams', to: 'teams#create'
+  # get 'team/:team_id/edit', to: 'teams#edit'
+  # patch 'team/:team_id', to: 'teams#update'
+  # delete 'team/team_id', to: 'teams#destroy'
+
+  # get 'team/:team_id/athletes', to: 'teams#players'
+  # get 'team/:team_id/athlete/:athlete_id/plans', to: 'teams#playerplans'
+  # get 'team/:team_id/athlete/:athlete_id/plan/:plan_id/workouts' to: 'teams#playerplanworkouts'
+
+  # . . .
+
+  # get 'athlete/:athlete_id', to: 'athletes#show'
+  # get 'athlete/:athlete_id/edit', to: 'teams#edit'
+  # patch 'team/:team_id', to: 'teams#update'
+  # delete 'team/team_id', to: 'teams#destroy'
 
 
 #         Prefix Verb   URI Pattern                  Controller#Action

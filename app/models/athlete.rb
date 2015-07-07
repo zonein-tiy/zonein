@@ -1,11 +1,14 @@
 class Athlete < ActiveRecord::Base
-  # EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
-  # validates :password, :access_token, presence: true
-  # validates :email, uniqueness: true, presence: true
-  # validates :email, format: { with: EMAIL_REGEX,
-  #                             message: "is not a valid email" }
-  # validates :username, uniqueness: true, presence: true
+  validates :password, presence: true
+  # , length: {minimum: 6}
+  validates_length_of :password, :minimum => 6
+  validates :email, uniqueness: true, presence: true
+  validates :email, format: { with: EMAIL_REGEX,
+                              message: "is not a valid email" }
+  validates :username, uniqueness: true, presence: true
+  validates :access_token, presence: true
 
   before_validation :ensure_access_token
 
