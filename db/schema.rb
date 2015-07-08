@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707014617) do
+ActiveRecord::Schema.define(version: 20150707222707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,52 @@ ActiveRecord::Schema.define(version: 20150707014617) do
     t.integer  "zip"
     t.string   "phone_number"
     t.string   "password"
+  end
+
+  create_table "athletes_plans", id: false, force: :cascade do |t|
+    t.integer "athlete_id", null: false
+    t.integer "plan_id",    null: false
+  end
+
+  create_table "athletes_teams", id: false, force: :cascade do |t|
+    t.integer "team_id",    null: false
+    t.integer "athlete_id", null: false
+  end
+
+  create_table "athletes_workouts", id: false, force: :cascade do |t|
+    t.integer "athlete_id", null: false
+    t.integer "workout_id", null: false
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "workout_interval"
+    t.boolean  "completion"
+    t.string   "created_by"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "sport"
+    t.string   "image_url"
+    t.datetime "season_start"
+    t.datetime "season_end"
+    t.string   "city"
+    t.string   "state"
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.string  "name"
+    t.string  "description"
+    t.string  "type"
+    t.integer "time"
+    t.string  "image_url"
+    t.string  "video_url"
+    t.boolean "running"
+    t.boolean "weightlifting"
   end
 
 end
