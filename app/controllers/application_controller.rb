@@ -16,4 +16,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActiveRecord::RecordNotFound do
+    render json: { message: "Could not find the requested object: #{params}" },
+      status: :not_found
+  end
+
 end
