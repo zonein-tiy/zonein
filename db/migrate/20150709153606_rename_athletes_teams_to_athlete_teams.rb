@@ -1,4 +1,4 @@
-class RenameAthletesTeamsToAtheleteTeams< ActiveRecord::Migration
+class RenameAthletesTeamsToAthleteTeams < ActiveRecord::Migration
   def self.up
     rename_table :athletes_teams, :athlete_teams
   end 

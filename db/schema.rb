@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708204918) do
+ActiveRecord::Schema.define(version: 20150709153655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "athlete_plans", id: false, force: :cascade do |t|
+    t.integer "athlete_id", null: false
+    t.integer "plan_id",    null: false
+  end
+
+  create_table "athlete_teams", id: false, force: :cascade do |t|
+    t.integer "team_id",    null: false
+    t.integer "athlete_id", null: false
+  end
+
+  create_table "athlete_workouts", id: false, force: :cascade do |t|
+    t.integer "athlete_id", null: false
+    t.integer "workout_id", null: false
+  end
 
   create_table "athletes", force: :cascade do |t|
     t.string   "first_name"
@@ -34,18 +49,8 @@ ActiveRecord::Schema.define(version: 20150708204918) do
     t.string   "password"
   end
 
-  create_table "athletes_plans", id: false, force: :cascade do |t|
-    t.integer "athlete_id", null: false
+  create_table "plan_workouts", id: false, force: :cascade do |t|
     t.integer "plan_id",    null: false
-  end
-
-  create_table "athletes_teams", id: false, force: :cascade do |t|
-    t.integer "team_id",    null: false
-    t.integer "athlete_id", null: false
-  end
-
-  create_table "athletes_workouts", id: false, force: :cascade do |t|
-    t.integer "athlete_id", null: false
     t.integer "workout_id", null: false
   end
 
