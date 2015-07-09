@@ -6,7 +6,7 @@ before_action :authenticate_with_token!
 # end
 
 def create
-  binding.pry
+  # binding.pry
     # creator_id = current_athlete.id
 
     @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting], creator_id: current_athlete.id)
@@ -18,7 +18,7 @@ def create
     if @workout.save
         # workout.athlete_workout.create(athlete_id: current_user_id)
         AthleteWorkout.create(workout_id: @workout.id, athlete_id: current_athlete.id)
-        render 'workout.json.jbuilder', status: :created
+        render 'create.json.jbuilder', status: :created
     else
         render json: { errors: @athlete.errors.full_messages }, status: :unprocessable_entity
     end
@@ -26,6 +26,7 @@ end
 
 def index
   @workouts = Workout.all 
+  render 'index.json.jbuilder', status: :created
 end
 
 # def show_athlete

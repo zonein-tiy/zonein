@@ -1,0 +1,1 @@
+json.(@workout, :id, :name, :description, :time, :steps)
