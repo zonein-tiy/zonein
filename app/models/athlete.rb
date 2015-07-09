@@ -22,9 +22,13 @@ class Athlete < ActiveRecord::Base
   has_many :athlete_workouts
   has_many :workouts, through: :athlete_workouts
 
-  # def name
-  #   "#{self.first_name} #{self.last_name}"
-  # end
+  belongs_to :athlete_team
+  belongs_to :athlete_plan
+  belongs_to :athlete_workout
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   def ensure_access_token
     if self.access_token.blank?

@@ -8,7 +8,8 @@ class Workout < ActiveRecord::Base
   has_many :athletes, through: :athlete_workouts
 
 
-  #belongs_to :athlete_workout
-  # add a creator_id column
+  belongs_to :athlete_workout
+  belongs_to :plan_workout 
+
   belongs_to :creator, class_name: 'Athlete'
 end
