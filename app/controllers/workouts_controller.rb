@@ -1,23 +1,48 @@
 class WorkoutsController < ApplicationController
-
+before_action :authenticate_with_token!
 # def new
 #   @workout = Workout.new(workout_params)
 #   @workout = Workout.new (name: params[:name], description: params[:description], type: params[:type], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting])
 # end
 
 def create
-  # add creator_id in params
-    @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting])
-# @workout = current-user.workouts.new
+  binding.pry
+    # creator_id = current_athlete.id
+
+    @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting], creator_id: current_athlete.id)
+
+    # @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting], creator_id: creator_id)
+    # @workout = current_user.workouts.new
+    #  , :is_admin => true)
+
     if @workout.save
+        # workout.athlete_workout.create(athlete_id: current_user_id)
+        AthleteWorkout.create(workout_id: @workout.id, athlete_id: current_athlete.id)
         render 'workout.json.jbuilder', status: :created
     else
         render json: { errors: @athlete.errors.full_messages }, status: :unprocessable_entity
     end
 end
 
-# def workout_params
-#   params.require(:workout).permit(:name, :description, :type, :time, :image_url,
-#     :video_url, :running, :weightlifting)
+def index
+  @workouts = Workout.all 
+end
+
+# def show_athlete
+#   creator_name = current_user
+#   workouts = Workout.all
+#   workouts.each do |workout|
+#     workout.creator = creator_name
+#   @workouts = Workout.all
+#   @creator = 
+#   if @creator.nil? : creator_id = current_user
+#   @workouts = 
+#   @workouts = @creator.workouts.all 
 # end
+
+# def show_other
+# # def workout_params
+# #   params.require(:workout).permit(:name, :description, :type, :time, :image_url,
+# #     :video_url, :running, :weightlifting)
+# # end
 end
