@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709153655) do
+ActiveRecord::Schema.define(version: 20150709161527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150709153655) do
     t.integer  "workout_interval"
     t.boolean  "completion"
     t.string   "created_by"
+    t.integer  "creator_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150709153655) do
     t.datetime "season_end"
     t.string   "city"
     t.string   "state"
+    t.integer  "coach_id"
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150709153655) do
     t.boolean "running",       default: false
     t.boolean "weightlifting", default: false
     t.text    "steps"
+    t.integer "creator_id"
   end
 
 end
