@@ -6,8 +6,9 @@ class WorkoutsController < ApplicationController
 # end
 
 def create
+  # add creator_id in params
     @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting])
-
+# @workout = current-user.workouts.new
     if @workout.save
         render 'workout.json.jbuilder', status: :created
     else

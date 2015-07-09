@@ -1,4 +1,5 @@
 class AthleteTeam < ActiveRecord::Base
-  has_many :athletes
+  # TeamMember
+  belongs_to :athlete
   belongs_to :team
 end

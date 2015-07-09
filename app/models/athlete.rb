@@ -13,11 +13,18 @@ class Athlete < ActiveRecord::Base
   before_validation :ensure_access_token
   before_save :encrypt_password
 
-  has_many :teams, through: :athletes_teams
-  belongs_to :athlete_team
-  has_many :plans, through: :athletes_plans
-  has_many :workouts, through: :athletes_workouts
+  has_many :athlete_teams
+  has_many :teams, through: :athlete_teams
 
+  has_many :athlete_plans
+  has_many :plans, through: :athlete_plans
+
+  has_many :athlete_workouts
+  has_many :workouts, through: :athlete_workouts
+
+  # def name
+  #   "#{self.first_name} #{self.last_name}"
+  # end
 
   def ensure_access_token
     if self.access_token.blank?
