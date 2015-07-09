@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :teams
   resources :athletes
   resources :plans
-  resources :workouts
+  resources :workouts, except: [:show]
+
+
+  get 'workouts/athlete', to: 'workouts#index_create'
 
   # resources :athletes do
   #   resources :plans, only: [:index, :new, :create]

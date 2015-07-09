@@ -29,8 +29,11 @@ def index
   render 'index.json.jbuilder', status: :created
 end
 
-# def show_athlete
-#   creator_name = current_user
+def index_create
+    @workouts = Workout.where(creator_id: current_athlete.id)
+    # binding.pry
+    render 'index_create.json.jbuilder', status: :created
+end
 #   workouts = Workout.all
 #   workouts.each do |workout|
 #     workout.creator = creator_name
