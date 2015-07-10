@@ -1,1 +1,1 @@
-json.(@plan, :id, :name, :start_date, :end_date)
+json.(@plan, :id, :name, :description)
