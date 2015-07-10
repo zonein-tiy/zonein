@@ -31,7 +31,7 @@ end
 
 def index_create
     @workouts = Workout.where(creator_id: current_athlete.id)
-    # binding.pry
+   # binding.pry
     render 'index_create.json.jbuilder', status: :created
 end
 #   workouts = Workout.all

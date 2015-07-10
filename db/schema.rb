@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709161527) do
+ActiveRecord::Schema.define(version: 20150710133847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,10 +82,13 @@ ActiveRecord::Schema.define(version: 20150709161527) do
     t.integer "time"
     t.string  "image_url"
     t.string  "video_url"
-    t.boolean "running",       default: false
-    t.boolean "weightlifting", default: false
+    t.boolean "running",          default: false
+    t.boolean "weightlifting",    default: false
     t.text    "steps"
     t.integer "creator_id"
+    t.boolean "swimming",         default: false
+    t.boolean "circuit_training", default: false
+    t.boolean "cycling",          default: false
   end
 
 end
