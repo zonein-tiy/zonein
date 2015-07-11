@@ -12,7 +12,15 @@ def create
 end
 
 def add_workout
-  PlanWorkout.create(plan_id: @plan_id, workout_id: params[:workout_id])
+  workout_array = params[:workout_array].split(",").map(&:to_i)
+  @plan_id = params[:plan_id]
+  workout_array.each do |w|
+    PlanWorkout.create(plan_id: @plan_id, workout_id: w)
+    # binding.pry
+  end
+  @planworkouts = PlanWorkout.where(plan_id: @plan_id)
+
+  
   render 'add_workout.json.jbuilder', status: :created
 end
 end

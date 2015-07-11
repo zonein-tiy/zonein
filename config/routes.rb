@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  post 'plans/workouts', to: 'plans#add_workout'
   post 'athletes/signin', to: 'athletes#signin'
   post 'athletes/signup', to: 'athletes#signup'
   patch 'athletes/register', to: 'athletes#register'
