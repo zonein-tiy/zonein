@@ -24,9 +24,11 @@ def add_workout
   render 'add_workout.json.jbuilder', status: :created
 end
 end
+
 # def update
-#   plan = params[plan.id]
-#   PlanWorkout.create(plan_id: plan, workout_id: params[:workout_id], start_date params[:start_date], end_date params[:end_date])
+# \  
+#   plan = @Plan.find_by(params[:plan_id]
+#   @PlanWorkout.create(plan_id: plan, workout_id: params[:workout_id], start_date params[:start_date], end_date params[:end_date])
 #   AthletePlan.create(athlete_id: current_athlete, plan_id: plan)
 #   @plan = Plan.find(:id)
 #   @workout = Workout.find(:id)
