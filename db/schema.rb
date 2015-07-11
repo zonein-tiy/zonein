@@ -17,11 +17,10 @@ ActiveRecord::Schema.define(version: 20150710174845) do
   enable_extension "plpgsql"
 
   create_table "athlete_plans", id: false, force: :cascade do |t|
-    t.integer "athlete_id",                 null: false
-    t.integer "plan_id",                    null: false
+    t.integer "athlete_id", null: false
+    t.integer "plan_id",    null: false
     t.string  "start_date"
     t.string  "end_date"
-    t.boolean "completion", default: false
   end
 
   create_table "athlete_teams", id: false, force: :cascade do |t|
@@ -60,7 +59,9 @@ ActiveRecord::Schema.define(version: 20150710174845) do
 
   create_table "plans", force: :cascade do |t|
     t.string  "name"
-    t.string  "description"
+    t.string  "type"
+    t.boolean "completion"
+    t.string  "created_by"
     t.integer "creator_id"
   end
 
