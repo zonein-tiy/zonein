@@ -1,3 +1,8 @@
+json.post_id @plan.id
+json.workouts do
+ json.array! @plan.workouts.map(&:id)
+end
+
 # json.(@plan_id) #workouts, :plan_id, :name, :description, :creator_id)
 # json.(@planworkouts, :workout_id)
 # json.(@planworkouts, :id, :name, :description, :creator_id)
@@ -9,7 +14,6 @@
 # json.(@planworkouts.pluck(:plan_id))
 # json.plan_id(@plan_id)
 
- json.array! @planworkouts, :plan_id, :workout_id
 # json do |workout|
 #   json.workout workout.workout_id
 # end

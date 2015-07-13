@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  patch 'plans/workouts', to: 'plans#update_completion'
   post 'plans/workouts', to: 'plans#add_workout'
   post 'athletes/signin', to: 'athletes#signin'
   post 'athletes/signup', to: 'athletes#signup'
