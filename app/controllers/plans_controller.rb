@@ -6,11 +6,13 @@ class PlansController < ApplicationController
 #   render 'index.json.jbuilder', status: :created
 # end
 
-# def index_creator
-#   @plans = Plan.where(creator_id: current_athlete.id)
-#   @plan_workouts = PlanWorkout.where(plan_id)
-#   render 'index_creator.json.jbuilder', status: :created
-# end
+def index_creator
+  @plans = Plan.joins(:athlete_plans).
+    where("athlete_plans.athlete_id" => current_athlete.id,
+          "athlete_plans.completion" => false,
+          "plans.creator_id" => current_athlete.id)
+ render 'index_creator.json.jbuilder', status: :created
+end
 
 # def index_active
 #   @plans = AthletePlan.where("athlete_id = ? && completion = ?", current_athlete.id, false)
