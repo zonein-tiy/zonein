@@ -3,9 +3,6 @@ before_action :authenticate_with_token!
 
 def index
   @plans = Plan.joins(:plan_workouts)
-  # @plans = Plan.all
-  # @plan_workouts = PlanWorkout.all
-  binding.pry
   render 'index.json.jbuilder', status: :created
 end
 
