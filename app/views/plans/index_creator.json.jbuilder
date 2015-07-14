@@ -8,7 +8,7 @@ json.(@plans) do |plan|
   # json.(@plan.athlete_plans.athletes, :username) ##NoMethodError athlete
 
   json.workouts plan.workouts.pluck(:id)
-  json.state_date plan.athlete_plans.pluck(:start_date)
+  json.start_date plan.athlete_plans.pluck(:start_date)
   json.end_date plan.athlete_plans.pluck(:end_date)
 
 end
