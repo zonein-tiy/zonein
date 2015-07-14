@@ -1,34 +1,15 @@
-json.plans @plans do |plan|
+
+json.(@plans) do |plan|
   json.extract! plan, :id, :name, :description, :creator_id
+  # json.creator_username plan.athletes.username ##NoMethodError username
+  # json.creator_username plan.athletes(:username)  ##shows all attributes for athlete
+  json.creator_username plan.athletes.pluck(:username) ##shows username in an array
+  # json.creator_username current_athlete.username  #undefined variable or method current_athlete
+  # json.(@plan.athlete_plans.athletes, :username) ##NoMethodError athlete
+
   json.workouts plan.workouts.pluck(:id)
+  json.state_date plan.athlete_plans.pluck(:start_date)
+  json.end_date plan.athlete_plans.pluck(:end_date)
+
 end
-# json.(@plans, :name)
-# json.(@plans, :name, :description)
-
-# description)
-  # , :description, :creator_id)
-
-# json.array!@plans) do |json, plan|
-
-
-
-# json.array!(@plans) do |json, plan|
-#   # json.plan_id plan.plan_id
-#   json.description plan.description
-#   json.creator_id plan.creator_id
-#   json.workouts plan.planworkouts.workout_id
-#   json.start_date plan.athlete_plans.start_date
-#   json.end_date plan.athlete_plans.end_date
-#   json.completion plan.athlete_plans.completion
-# end
-  # , :name, :description, :creator_id
-# json.array! @planworkouts, :workout_id
-# json.array! @athleteplan, :start_date, :end_date, :completion
-
-
-# json.name user.name
-
-# json.array!(@reservations) do |json, reservation|
-#     json.restaurant reservation.restaurant.name
-#     json.reservation_time reservation.time
 

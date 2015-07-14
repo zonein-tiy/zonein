@@ -1,10 +1,13 @@
 class PlansController < ApplicationController
+before_action :authenticate_with_token!
 
-# def index
-#   @plans = Plan.all
-#   @plan_workouts = PlanWorkouts.all
-#   render 'index.json.jbuilder', status: :created
-# end
+def index
+  @plans = Plan.joins(:plan_workouts)
+  # @plans = Plan.all
+  # @plan_workouts = PlanWorkout.all
+  binding.pry
+  render 'index.json.jbuilder', status: :created
+end
 
 def index_creator
   @plans = Plan.joins(:athlete_plans).
@@ -49,7 +52,8 @@ def add_workout
     PlanWorkout.create(plan_id: @plan.id, workout_id: w)
     # binding.pry
   end
-  
+  # @athlete = plan_workouts.first
+  # binding.pry
   render 'add_workout.json.jbuilder', status: :created
 end
 
