@@ -9,11 +9,8 @@ def create
   # binding.pry
     # creator_id = current_athlete.id
 
-    @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting], params:[:swimming], params[:circuit_training], params[:cycling], creator_id: current_athlete.id)
+    @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting], swimming: params[:swimming], circuit_training: params[:circuit_training], cycling: params[:cycling], creator_id: current_athlete.id)
 
-    # @workout = Workout.new(name: params[:name], steps: params[:steps], description: params[:description], time: params[:time], image_url: params[:image_url], video_url: params[:video_url], running: params[:running], weightlifting: params[:weightlifting], creator_id: creator_id)
-    # @workout = current_user.workouts.new
-    #  , :is_admin => true)
 
     if @workout.save
         # workout.athlete_workout.create(athlete_id: current_user_id)

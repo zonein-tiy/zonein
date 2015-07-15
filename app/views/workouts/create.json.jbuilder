@@ -1,1 +1,1 @@
-json.(@workout, :id, :creator_id, :name, :description, :time, :steps, :running, :weightlifting, :swimming, :circuit_training, :cycling, :video_url, :image_url)
+json.(@workout, :id, :creator_id, :name, :description, :time, :steps, :image_url, :video_url, :running, :weightlifting, :swimming, :circuit_training, :cycling)
