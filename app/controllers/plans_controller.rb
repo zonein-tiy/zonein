@@ -39,14 +39,11 @@ def create
 end
 
 def add_workout
-  # binding.pry
-  # workout_array = params[:workout_array].split(",").map(&:to_i)
   workout_array = params[:workout_array]
-  # workout_array = receive_ary(workout_array)
   @plan = Plan.find(params[:plan_id])
-  workout_array.map {|w| w.to_i}
-  workout_array.each do |w|
-    PlanWorkout.create(plan_id: @plan.id, workout_id: w)
+  workout_array.each do |hsh|
+    workout = hsh
+    PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id], start_date: w[:date])
     # binding.pry
   end
   # @athlete = plan_workouts.first
@@ -54,22 +51,62 @@ def add_workout
   render 'add_workout.json.jbuilder', status: :created
 end
 
+# def add_workout
+#   # binding.pry
+#   # workout_array = params[:workout_array].split(",").map(&:to_i)
+#   workout_array = params[:workout_array]
+#   # workout_array = receive_ary(workout_array)
+#   @plan = Plan.find(params[:plan_id])
+#   workout_array.map {|w| w.to_i}
+#   workout_array.each do |w|
+#     PlanWorkout.create(plan_id: @plan.id, workout_id: w)
+#     # binding.pry
+#   end
+#   # @athlete = plan_workouts.first
+#   # binding.pry
+#   render 'add_workout.json.jbuilder', status: :created
+# end
+# {{"plan_id": "5"}
+# [{workout_id: 2, date: 2015-07-13-000T},
+#  {workout_id: 4, date: 2015-07-16-000T}]}
+
+#   workout_array = params[:workout_array]
+#   @plan = Plan.find(params[:plan_id])
+#   # workout_array.map {|w| w.to_i}
+#   workout_array.each do |element|
+#       element.each do |k, v|
+#    wid = w.to_i
+#    PlanWorkout.create(plan_id: @plan.id, workout_id: wid)
+#    @athlete_plan = AthletePlan.find_by(athlete_id: current_athlete.id, plan_id: @plan.id)
+#    @athlete_plan = 
+#     # binding.pry
+#   end
+
 
 def update_completion
+  plan_id = params[:id]
+  @athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, plan_id)
+  @athlete_plan.update(completion: true)
 
-  # status = params[:completion]
-
-  @athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, params[:plan_id])
-
-  if current_athlete.id == @athlete_plan.plan.creator_id
-    @athlete_plan.completion = true
-      # @athlete_plan.update_attribute(:completion, status)
-    render plain: "Updated. Plan status changed to 'completed'.", status: :updated
-      # render json 'update_completion.json.jbuilder', status: :updated
-  else
-    render json: { message: "You are not authorized to update this plan status." },status: :unauthorized
-  end
+  render 'update_completion.json.jbuilder', status: :created
 end
 
+# def update_workout_completion
+#   planid = params[:plan_id]
+#   workoutid = params[:workout_id]
+#   @athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, planid)
+#   @athlete_workout = AthleteWorkout.find_by("athlete_id = ? AND workout_id = ?", current_athlete, workoutid)
+
+#   @athlete_plan.update(completion: true)
+
+#   render 'update_completion.json.jbuilder', status: :created
+# end
+  
+  # plan_id = params[:id]
+  # athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, plan_id)
+  # AthletePlan.where(athlete_id: athlete_plan.athlete_id, plan_id: athlete_plan.plan_id).update_all(completion: true)
+  # @athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, plan_id)
+    # @athlete_plan.update
+      # @athlete_plan.update_attribute(:completion, status)
 
  end
