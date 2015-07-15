@@ -12,7 +12,7 @@
 # end
 # json.(@planworkouts)
 json.(@plans) do |plan|
-  json.extract! plan, :id, :name, :description, :creator_id
+  json.extract! plan, :id, :name, :description, :creator_id, :plan_creator
   # json.creator_username plan.athletes.pluck(:username)
   json.workouts plan.workouts.pluck(:id)
   # json.state_date plan.athlete_plans.pluck(:start_date)

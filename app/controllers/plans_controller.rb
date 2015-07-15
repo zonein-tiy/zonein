@@ -28,7 +28,7 @@ end
 
 
 def create
-  @plan = Plan.new(name: params[:name], description: params[:description], creator_id: current_athlete.id)
+  @plan = Plan.new(name: params[:name], description: params[:description], creator_id: current_athlete.id, plan_creator: current_athlete.username)
 
   if @plan.save
     @athleteplan = AthletePlan.create(athlete_id: current_athlete.id, plan_id: @plan.id, start_date: params[:start_date], end_date: params[:end_date])
