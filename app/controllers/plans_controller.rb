@@ -50,15 +50,15 @@ def add_workout
   render 'add_workout.json.jbuilder', status: :created
 end
 
-def add_workout
-  workout_array = params[:workout_array]
-  @plan = Plan.find(params[:plan_id])
-  workout_array.each do |hsh|
-    workout = hsh
-    PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id], start_date: w[:date])
-   end
-   render 'add_workout.json.jbuilder', status: :created
-end
+# def add_workout
+#   workout_array = params[:workout_array]
+#   @plan = Plan.find(params[:plan_id])
+#   workout_array.each do |hsh|
+#     workout = hsh
+#     PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id], start_date: w[:date])
+#    end
+#    render 'add_workout.json.jbuilder', status: :created
+# end
 
 
 def update_completion
