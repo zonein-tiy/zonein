@@ -55,24 +55,21 @@ def add_workout
 end
 
 
-# def update_completion
-#   # self.primary_key = "id"
+def update_completion
 
-#   plan = Plan.find_by(id: params[:plan_id])
-#   status = params[:completion]
-#   # binding.pry
-#   @athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, params[:plan_id])
-#   # @athlete_plan = AthletePlan.where(athlete_id: current_athlete.id &&)
+  # status = params[:completion]
 
-#   if current_athlete.id == plan.creator_id
-#     # binding.pry
-#     @athlete_plan.update_attribute(:completion, status)
-#     # @post.update(post_params)
-#     render 'update_completion.json.jbuilder', status: :updated
-#   else
-#     render json: { message: "You are not authorized to update this plan status." },status: :unauthorized
-#   end
-# end
+  @athlete_plan = AthletePlan.find_by("athlete_id = ? AND plan_id = ?", current_athlete.id, params[:plan_id])
+
+  if current_athlete.id == @athlete_plan.plan.creator_id
+    @athlete_plan.completion = true
+      # @athlete_plan.update_attribute(:completion, status)
+    render plain: "Updated. Plan status changed to 'completed'.", status: :updated
+      # render json 'update_completion.json.jbuilder', status: :updated
+  else
+    render json: { message: "You are not authorized to update this plan status." },status: :unauthorized
+  end
+end
 
 
  end
