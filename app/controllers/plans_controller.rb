@@ -38,49 +38,27 @@ def create
   end
 end
 
+
+def add_workout
+  workout_array = params[:workout_array]
+
+  @plan = Plan.find(params[:plan_id])
+  workout_array.map {|w| w.to_i}
+  workout_array.each do |w|
+    PlanWorkout.create(plan_id: @plan.id, workout_id: w)
+  end
+  render 'add_workout.json.jbuilder', status: :created
+end
+
 def add_workout
   workout_array = params[:workout_array]
   @plan = Plan.find(params[:plan_id])
   workout_array.each do |hsh|
     workout = hsh
     PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id], start_date: w[:date])
-    # binding.pry
-  end
-  # @athlete = plan_workouts.first
-  # binding.pry
-  render 'add_workout.json.jbuilder', status: :created
+   end
+   render 'add_workout.json.jbuilder', status: :created
 end
-
-# def add_workout
-#   # binding.pry
-#   # workout_array = params[:workout_array].split(",").map(&:to_i)
-#   workout_array = params[:workout_array]
-#   # workout_array = receive_ary(workout_array)
-#   @plan = Plan.find(params[:plan_id])
-#   workout_array.map {|w| w.to_i}
-#   workout_array.each do |w|
-#     PlanWorkout.create(plan_id: @plan.id, workout_id: w)
-#     # binding.pry
-#   end
-#   # @athlete = plan_workouts.first
-#   # binding.pry
-#   render 'add_workout.json.jbuilder', status: :created
-# end
-# {{"plan_id": "5"}
-# [{workout_id: 2, date: 2015-07-13-000T},
-#  {workout_id: 4, date: 2015-07-16-000T}]}
-
-#   workout_array = params[:workout_array]
-#   @plan = Plan.find(params[:plan_id])
-#   # workout_array.map {|w| w.to_i}
-#   workout_array.each do |element|
-#       element.each do |k, v|
-#    wid = w.to_i
-#    PlanWorkout.create(plan_id: @plan.id, workout_id: wid)
-#    @athlete_plan = AthletePlan.find_by(athlete_id: current_athlete.id, plan_id: @plan.id)
-#    @athlete_plan = 
-#     # binding.pry
-#   end
 
 
 def update_completion
