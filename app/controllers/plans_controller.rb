@@ -39,27 +39,50 @@ def create
 end
 
 
-def add_workout
-  workout_array = params[:workout_array]
-
-  @plan = Plan.find(params[:plan_id])
-  workout_array.map {|w| w.to_i}
-  workout_array.each do |w|
-    PlanWorkout.create(plan_id: @plan.id, workout_id: w)
-  end
-  render 'add_workout.json.jbuilder', status: :created
-end
-
 # def add_workout
 #   workout_array = params[:workout_array]
+
 #   @plan = Plan.find(params[:plan_id])
-#   workout_array.each do |hsh|
-#     workout = hsh
-#     PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id], start_date: w[:date])
-#    end
-#    render 'add_workout.json.jbuilder', status: :created
+#   workout_array.map {|w| w.to_i}
+#   workout_array.each do |w|
+#     PlanWorkout.create(plan_id: @plan.id, workout_id: w)
+#   end
+#   render 'add_workout.json.jbuilder', status: :created
 # end
 
+def add_workout
+  workout_array = params[:workouts]
+  @athlete_workout =[]
+  @plan_workout =[]
+  @plan = Plan.find(params[:plan_id])
+  workout_array.each do |w|
+    @plan_workout << PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id])
+    w[:workout_dates].each do |dodate|
+        @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate)
+    end
+   end
+   # binding.pry
+   render 'add_workout.json.jbuilder', status: :created
+end
+#         { plan_id: 9,
+
+#           workouts: [{
+#             workout_id: 2,
+#             workout_dates: ["2015-07-15-0000T", "2015-07-15-0000T", "2015-07-15-0000T"]
+#           },
+#           {
+#             workout_id: 5,
+#             workout_dates: ["2015-07-15-0000T", "2015-07-15-0000T", "2015-07-15-0000T"]
+#           },
+#           {
+#             workout_id: 7,
+#             workout_dates: ["2015-07-15-0000T", "2015-07-15-0000T", "2015-07-15-0000T"]
+#           },
+#           {
+#             workout_id: 9,
+#             workout_dates: ["2015-07-15-0000T", "2015-07-15-0000T", "2015-07-15-0000T"]
+#           }];
+#         }
 
 def update_completion
   plan_id = params[:id]
