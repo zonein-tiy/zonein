@@ -31,7 +31,7 @@ def index_create
     render 'index_create.json.jbuilder', status: :created
 end
 
-def index_scheduled
+# def index_scheduled
     
 #   workouts = Workout.all
 #   workouts.each do |workout|
