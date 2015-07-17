@@ -17,7 +17,7 @@ end
 def index_adopted
   @athlete_plans = AthletePlan.where(athlete_id: current_athlete.id, completion: false)
   plan_ids = @athlete_plans.map(&:plan_id).uniq
-  binding.pry
+  # binding.pry
 
   @athlete_workouts = AthleteWorkout.where(athlete_id: current_athlete.id, plan_id: plan_ids)
 
