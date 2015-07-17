@@ -16,27 +16,12 @@ end
 
 def index_adopted
   @athlete_plans = AthletePlan.where(athlete_id: current_athlete.id, completion: false)
+  plan_ids = @athlete_plans.map(&:plan_id).uniq
+  binding.pry
 
-  workoutids = []
-  planids =[]
-  @plans =[]
-  @plan_workouts =[]
-  @athlete_workouts =[]
+  @athlete_workouts = AthleteWorkout.where(athlete_id: current_athlete.id, plan_id: plan_ids)
 
-  planids = @athlete_plans.pluck(:plan_id)
-
-  planids.each do |plan|
-    # @plans << Plan.find(plan)
-    tempplan = PlanWorkout.where(plan_id: plan)
-    tempwork = tempplan.pluck(:workout_id)
-
-      @athlete_workouts << AthleteWorkout.where(athlete_id: current_athlete.id, workout_id: tempwork)
-    @plan_workouts << tempplan
-  end
-  # @athlete_workouts.flatten
-  # binding.pry
-
-  render 'index_adopted.json.jbuilder', status: :created
+  render json: @athlete_workouts, status: :ok
 end
   # workoutids = @plan_workouts.pluck(:workout_id)
   # workoutids.each do |workout|
