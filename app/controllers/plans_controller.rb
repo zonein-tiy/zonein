@@ -19,8 +19,8 @@ def index_adopted
 
   workoutids = []
   planids =[]
-  # @plans =[]
-  # @plan_workouts =[]
+  @plans =[]
+  @plan_workouts =[]
   @athlete_workouts =[]
 
   planids = @athlete_plans.pluck(:plan_id)
