@@ -30,6 +30,9 @@ def index_create
    # binding.pry
     render 'index_create.json.jbuilder', status: :created
 end
+
+def index_scheduled
+    
 #   workouts = Workout.all
 #   workouts.each do |workout|
 #     workout.creator = creator_name

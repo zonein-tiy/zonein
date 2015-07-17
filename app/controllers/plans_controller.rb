@@ -14,6 +14,34 @@ def index_creator
  render 'index_creator.json.jbuilder', status: :created
 end
 
+def index_adopted
+  @athlete_plans = AthletePlan.where(athlete_id: current_athlete.id, completion: false)
+
+  workoutids = []
+  planids =[]
+  # @plans =[]
+  # @plan_workouts =[]
+  @athlete_workouts =[]
+
+  planids = @athlete_plans.pluck(:plan_id)
+
+  planids.each do |plan|
+    # @plans << Plan.find(plan)
+    tempplan = PlanWorkout.where(plan_id: plan)
+    tempwork = tempplan.pluck(:workout_id)
+    binding.pry
+      @athlete_workouts << AthleteWorkout.where(athlete_id: current_athlete.id, workout_id: tempwork)
+    @plan_workouts << tempplan
+  end
+  # @athlete_workouts.flatten
+  # binding.pry
+
+  render 'index_adopted.json.jbuilder', status: :created
+end
+  # workoutids = @plan_workouts.pluck(:workout_id)
+  # workoutids.each do |workout|
+  #   @athlete_workouts << AthleteWorkout.where(athlete_id: current_athlete.id, workout_id: workout)
+  # end
 # def index_active
 #   @plans = AthletePlan.where("athlete_id = ? && completion = ?", current_athlete.id, false)
 #   render 'index_active.json.jbuilder', status: :created
@@ -58,7 +86,7 @@ def add_workout
   workout_array.each do |w|
     @plan_workout << PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id])
     w[:workout_dates].each do |dodate|
-        @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate)
+        @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate, plan_id: @plan.id)
     end
    end
    # binding.pry

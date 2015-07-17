@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   patch 'plans/workout_completion', to: 'plans#update_workout_completion'
   patch 'plans/completion', to: 'plans#update_completion'
+  get 'plans/adopted', to: 'plans#index_adopted'
   get 'plans/creator', to: 'plans#index_creator'
   patch 'plans/workouts', to: 'plans#update_completion'
   post 'plans/workouts', to: 'plans#add_workout'
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
   resources :athletes
   resources :plans
   resources :workouts, except: [:show]
-
 
   get 'workouts/athlete', to: 'workouts#index_create'
 
