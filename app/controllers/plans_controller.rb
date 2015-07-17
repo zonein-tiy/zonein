@@ -29,7 +29,7 @@ def index_adopted
     # @plans << Plan.find(plan)
     tempplan = PlanWorkout.where(plan_id: plan)
     tempwork = tempplan.pluck(:workout_id)
-    binding.pry
+
       @athlete_workouts << AthleteWorkout.where(athlete_id: current_athlete.id, workout_id: tempwork)
     @plan_workouts << tempplan
   end
