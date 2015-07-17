@@ -1,0 +1,1 @@
+json.(@athlete_workout, :id, :workout_completion)

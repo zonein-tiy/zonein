@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  patch 'plans/workout_completion', to: 'plans#update_workout_completion'
   patch 'plans/completion', to: 'plans#update_completion'
   get 'plans/creator', to: 'plans#index_creator'
   patch 'plans/workouts', to: 'plans#update_completion'

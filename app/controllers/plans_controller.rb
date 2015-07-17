@@ -92,6 +92,16 @@ def update_completion
   render 'update_completion.json.jbuilder', status: :created
 end
 
+def update_workout_completion
+  # plan_id = params[:plan_id]
+
+  athlete_workout_id = params[:athlete_workout_id]
+  # workout_id = params[:workout_id]
+  @athlete_workout = AthleteWorkout.find(athlete_workout_id)
+  # binding.pry
+  @athlete_workout.update(workout_completion: true)
+  render 'update_workout_completion.json.jbuilder', status: :created
+end
 # def update_workout_completion
 #   planid = params[:plan_id]
 #   workoutid = params[:workout_id]
