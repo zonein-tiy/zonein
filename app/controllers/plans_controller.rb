@@ -71,12 +71,21 @@ class PlansController < ApplicationController
 #  end
 
   def destroy
-    @plan = Plan.find(params[:id])
-    if @plan.creator_id == current_athlete.id
+    @plan = AthletePlan.find_by(plan_id: params[:id])
+    if @plan.athlete_id == current_athlete.id
       @plan.destroy
-      render plain: 'Plan was deleted.'
+      render plain: "Plan had been deleted from the dashboard of #{@plan.athlete.username}."
     else
-      render plain: 'You must be the creator of the Plan in order to delete it.'
+      render plain: 'You can only delete a plan from your own dashboard.'
     end
   end
+  # def destroy
+  #   @plan = Plan.find(params[:id])
+  #   if @plan.creator_id == current_athlete.id
+  #     @plan.destroy
+  #     render plain: 'Plan was deleted.'
+  #   else
+  #     render plain: 'You must be the creator of the Plan in order to delete it.'
+  #   end
+  # end
 end
