@@ -25,4 +25,16 @@ class WorkoutsController < ApplicationController
     render 'index_create.json.jbuilder', status: :created
   end
 
+  def destroy
+    @workout = Workout.find(params[:id])
+    if @workout.creator_id == current_athlete.id
+      @workout.destroy
+      render plain: 'Workout was deleted.'
+    else
+      render plain: 'You must be the creator of the workout to delete it.'
+    end
+  end
+
+
+
 end

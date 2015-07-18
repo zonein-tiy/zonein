@@ -3,10 +3,10 @@ class Workout < ActiveRecord::Base
 
   validates :creator_id, presence: true
   
-  has_many :plan_workouts
+  has_many :plan_workouts, dependent: :destroy
   has_many :plans, through: :plan_workouts
 
-  has_many :athlete_workouts
+  has_many :athlete_workouts, dependent: :destroy
   has_many :athletes, through: :athlete_workouts
 
 

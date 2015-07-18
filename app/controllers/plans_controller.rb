@@ -72,7 +72,6 @@ class PlansController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
-    # binding.pry
     if @plan.creator_id == current_athlete.id
       @plan.destroy
       render plain: 'Plan was deleted.'
