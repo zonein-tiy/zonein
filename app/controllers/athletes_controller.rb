@@ -52,6 +52,14 @@ class AthletesController < ApplicationController
   end
 
   def destroy
+    @athlete = Athlete.find(params[:id])
+    if @athlete.id == current_athlete.id
+      binding.pry
+      @athlete.destroy
+      render plain: "Athlete #{@athlete.username} has been deleted."
+    else
+      render plain: "You don't have access rights to delete this athlete profile."
+    end
   end
 
   # private
