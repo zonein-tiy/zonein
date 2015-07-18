@@ -16,10 +16,10 @@ class Athlete < ActiveRecord::Base
   has_many :athlete_teams
   has_many :teams, through: :athlete_teams
 
-  has_many :athlete_plans
+  has_many :athlete_plans, dependent: :destroy
   has_many :plans, through: :athlete_plans
 
-  has_many :athlete_workouts
+  has_many :athlete_workouts, dependent: :destroy
   has_many :workouts, through: :athlete_workouts
 
   # belongs_to :athlete_team
