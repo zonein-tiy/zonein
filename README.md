@@ -49,11 +49,15 @@ https://thawing-mountain-6062.herokuapp.com/
 
 Parameters:
 
- 
-* username (required)
-
+* username(required)
 
 * email (required)
+
+* password(required - must be at least 8 characters)
+
+Result:
+
+```{"username":"jdoe","email":"jdoe@abc.com","password":"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8","access_token":"xxxxx11111"}```
 
 ###### Sign In:
 
@@ -67,11 +71,29 @@ Parameters:
 
 * password (required)
 
+Result:
+```
+{
+  "username": "jdoe",
+  "email": "jdoe@abc.com",
+  "password": "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8",
+  "access_token": "xxxxx11111",
+  "first_name": null,
+  "last_name": null,
+  "phone_number": null,
+  "home_address": null,
+  "city": null,
+  "state": null,
+  "zip": null,
+  "interests": null,
+  "image_url": null
+}
+```
 #### CREATION METHODS:
 
 ###### Create an Athlete:
 
-POST ```/athletes```
+PATCH ```/athletes/register```
 
 Parameters:
 
@@ -86,6 +108,12 @@ Parameters:
 * interests
 * image_url
 
+Result:
+
+```
+{"username":"jdoe","email":"jdoe@abc.com","password":"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8","access_token":"xxxxx11111","first_name":"Jane","last_name":"Doe","phone_number":"4047706780","home_address":"1 Peachtree Street","city":null,"state":null,"zip":30303,"interests":"rugby, soccer","image_url":"http://i379.photobucket.com/albums/oo239/SyrjisEWR/Others/Randoms/Own%20Cuts/Girl383.jpg"}
+```
+
 ###### Create a Workout:
 
 POST ```/workouts```
@@ -96,7 +124,7 @@ Parameters:
 * name
 * steps
 * description
-* time
+* time (in minutes)
 * image_url
 * video_url
 * running
