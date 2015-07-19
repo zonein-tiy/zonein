@@ -2,13 +2,13 @@
 
 https://thawing-mountain-6062.herokuapp.com/
 
-[Sign Up](#signup)
-[Create an Athlete](#Create-an-Athlete)
+[Sign Up](#sign-up)
+[Create an Athlete](#create-an-athlete)
 [Delete](#delete)
 
 #### INITIAL ACCESS:
 
-###### To ***Sign Up***:
+###### To Sign Up:
 
 ```POST /athletes/signup```
 
