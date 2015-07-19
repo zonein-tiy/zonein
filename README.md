@@ -4,7 +4,8 @@ https://thawing-mountain-6062.herokuapp.com/
 
 [Sign Up](#sign-up)
 [Create an Athlete](#create-an-athlete)
-[Delete](#delete)
+[Retrieve all Workouts created by signed in Athlete](#retrieve-all-workouts-created-by-signed-in-athlete)
+[Delete a Plan](#delete-a-plan)
 
 #### INITIAL ACCESS:
 
@@ -34,7 +35,7 @@ Parameters:
 
 #### CREATION METHODS:
 
-###### To ***Create an Athlete***:
+###### Create an Athlete:
 
 POST ```/athletes```
 
@@ -124,11 +125,11 @@ Parameters:
 
 GET ```/workouts```
 
-###### To Retrieve all Workouts created by signed-in Athlete:
+###### Retrieve all Workouts created by signed in Athlete:
 
 GET ```/workouts/athlete```
 
-###### To Retrieve all Plans:
+###### Retrieve all Plans:
 
 GET ```/plans```
 
@@ -148,7 +149,7 @@ DELETE ```/athletes/:id```
 
 *:id is the athlete_id*
 
-###### Delete:
+###### Delete a Plan:
 
 DELETE ```/plans/:id```
 
