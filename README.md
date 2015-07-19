@@ -1,28 +1,47 @@
 ## API Documentation for ZONE-IN
 
-https://thawing-mountain-6062.herokuapp.com/
-[INTIAL ACCESS](#initial-access)
-[Sign Up](#sign-up)
-[Sign In](#sign-in)
-[CREATION METHODS](#creation-methods)
-[Create an Athlete](#create-an-athlete)
-[Create a Workout](#create-a-workout)
-[Create a Plan](#create-a-plan)
-[UPDATE METHODS](#update-methods)
-[Add Workouts to a Plan](#add-workouts-to-a-plan)
-[Mark a Workout as completed and display workout metrics](#mark-a-workout-as-completed-and-display-workout-metrics)
-[Mark a Plan as completed](#mark-a-plan-as-completed)
-[SEARCH METHODS](#search-methods)
-[Retrieve all Workouts](#retrieve-all-workouts)
-[Retrieve all Workouts created by signed in Athlete](#retrieve-all-workouts-created-by_signed-in-athlete)
-[Retrieve all Plans](#retrieve-all-plans)
-[Retrieve all Plans created by signed in Athlete](#retrieve-all-plans-created-by-signed-in-athlete)
-[Retrieve all Workouts that are in Plans adopted by the signed in Athlete](#retrieve-all-workouts-that-are-in-plans-adopted-by-the-signed-in-athlete)
-[DELETE METHODS](#delete-methods)
-[Delete an Athlete](#delete-an-athlete)
-[Delete a Plan](#delete-a-plan)
+https://thawing-mountain-6062.herokuapp.com/  
 
-#### INITIAL ACCESS:
+[ACCESS METHODS](#access-methods)
+
+
+* [Sign Up](#sign-up)
+* [Sign In](#sign-in)
+
+
+[CREATION METHODS](#creation-methods)
+
+
+* [Create an Athlete](#create-an-athlete)
+* [Create a Workout](#create-a-workout)
+* [Create a Plan](#create-a-plan)
+
+
+[UPDATE METHODS](#update-methods)
+
+
+* [Add Workouts to a Plan](#add-workouts-to-a-plan)
+* [Mark a Workout as completed and display workout metrics](#mark-a-workout-as-completed-and-display-workout-metrics)
+* [Mark a Plan as completed](#mark-a-plan-as-completed)
+
+
+[SEARCH METHODS](#search-methods)
+
+
+* [Retrieve all Workouts](#retrieve-all-workouts)
+* [Retrieve all Workouts created by signed in Athlete](#retrieve-all-workouts-created-by_signed-in-athlete)
+* [Retrieve all Plans](#retrieve-all-plans)
+* [Retrieve all Plans created by signed in Athlete](#retrieve-all-plans-created-by-signed-in-athlete)
+* [Retrieve all Workouts that are in Plans adopted by the signed in Athlete](#retrieve-all-workouts-that-are-in-plans-adopted-by-the-signed-in-athlete)
+
+
+[DELETE METHODS](#delete-methods)
+
+
+* [Delete an Athlete](#delete-an-athlete)
+* [Delete a Plan](#delete-a-plan)
+
+#### ACCESS METHODS:
 
 ###### Sign Up:
 
