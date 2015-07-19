@@ -1,1 +1,1 @@
-json.(@athlete_workout, :id, :workout_completion)
+json.(@athlete_workout, :id, :workout_completion, :lift_weight, :lift_reps, :run_distance, :run_time)

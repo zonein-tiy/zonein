@@ -65,10 +65,10 @@ class PlansController < ApplicationController
     athlete_workout_id = params[:athlete_workout_id]
     @athlete_workout = AthleteWorkout.find(athlete_workout_id)
     @athlete_workout.update(workout_completion: true)
+    @athlete_workout.update(lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
     render 'update_workout_completion.json.jbuilder', status: :created
   end
-# athlete_id: athlete_plan.athlete_id, plan_id: athlete_plan.plan_id).update_all(completion: true)
-#  end
+
 
   def destroy
     @plan = AthletePlan.find_by(plan_id: params[:id])
