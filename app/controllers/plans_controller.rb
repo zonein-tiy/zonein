@@ -61,11 +61,11 @@ class PlansController < ApplicationController
     @athleteplan = AthletePlan.create(athlete_id: current_athlete.id, plan_id: @plan.id, start_date: params[:start_date], end_date: params[:end_date])
     # binding.pry
     # {"plan_id"=>34, "start_date"=>"2015-08-10T04:00:00.000Z", "end_date"=>"2015-08-11T04:00:00.000Z", "workouts"=>[{"workout_id"=>"1", "workout_dates"=>["2015-08-10T04:00:00.000Z"]}, {"workout_id"=>"2", "workout_dates"=>["2015-08-11T04:00:00.000Z"]}
-    workout_array.each do |w|
-      w.[:workout_dates].each do |dodate|
-        @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate, plan_id: @plan.id)
-        end
-    end
+    # workout_array.each do |w|
+    #   w.[:workout_dates].each do |dodate|
+    #     @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate, plan_id: @plan.id)
+    #     end
+    # end
     render 'adopt_plan.json.jbuilder'
   end
 
