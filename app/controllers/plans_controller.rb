@@ -36,6 +36,7 @@ class PlansController < ApplicationController
     end
   end
 
+
   # Adds workouts to previously-created Plan
   def add_workout
     workout_array = params[:workouts]
@@ -44,11 +45,25 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:plan_id])
     workout_array.each do |w|
       @plan_workout << PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id])
-        w[:workout_dates].each do |dodate|
+      w[:workout_dates].each do |dodate|
         @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate, plan_id: @plan.id)
         end
     end
     render 'add_workout.json.jbuilder', status: :created
+  end
+# {"plan_id"=>34, "workouts"=>[{"workout_id"=>"1", "workout_dates"=>["2015-08-10T04:00:00.000Z"]}, {"workout_id"=>"2", "workout_dates"=>["2015-08-11T04:00:00.000Z”]}
+
+  def adopt_plan
+    workout_array = params[:workouts]
+    @athlete_workout = []
+    @plan = Plan.find(params[:plan_id])
+    @athleteplan = AthletePlan.create(athlete_id: current_athlete.id, plan_id: @plan.id, start_date: params[:start_date], end_date: params[:end_date])
+    # binding.pry
+    # {"plan_id"=>34, "start_date"=>"2015-08-10T04:00:00.000Z", "end_date"=>"2015-08-11T04:00:00.000Z", "workouts"=>[{"workout_id"=>"1", "workout_dates"=>["2015-08-10T04:00:00.000Z"]}, {"workout_id"=>"2", "workout_dates"=>["2015-08-11T04:00:00.000Z"]}
+    workout_array.each do |w|
+     @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: w[:workout_dates], plan_id: @plan.id)
+    end
+    render 'adopt_plan.json.jbuilder'
   end
 
   # Updates status of a Plan to completed
@@ -66,6 +81,7 @@ class PlansController < ApplicationController
     @athlete_workout = AthleteWorkout.find(athlete_workout_id)
     @athlete_workout.update(workout_completion: true)
     @athlete_workout.update(lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
+    @athlete_workout.update(completion_date: params[:completion_date])
     render 'update_workout_completion.json.jbuilder', status: :created
   end
 
