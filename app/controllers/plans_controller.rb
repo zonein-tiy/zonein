@@ -81,7 +81,8 @@ class PlansController < ApplicationController
   # Updates status of a Workout to completed
   def update_workout_completion
     athlete_workout = AthleteWorkout.find(params[:athlete_workout_id])
-    @athworkout_updated = athlete_workout.update(workout_completion: true, completion_date: params[:completion_date],lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
+    athlete_workout.update(workout_completion: true, completion_date: params[:completion_date],lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
+    @athlete_workout = AthleteWorkout.find(params[:athlete_workout_id])
     # @athlete_workout.update(lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
     # @athlete_workout.update(completion_date: params[:completion_date])
     render 'update_workout_completion.json.jbuilder', status: :created
