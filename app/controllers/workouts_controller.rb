@@ -25,6 +25,12 @@ class WorkoutsController < ApplicationController
     render 'index_create.json.jbuilder', status: :created
   end
 
+  def index_description
+    choice = params[:description]
+    @results = Workout.where(description: choice)
+    render 'index_description.json.jbuilder', status: :created
+  end
+
   def destroy
     @workout = Workout.find(params[:id])
     if @workout.creator_id == current_athlete.id

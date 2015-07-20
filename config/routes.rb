@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :athletes
   resources :plans
   resources :workouts, except: [:show]
-
+  post 'workouts/description', to: 'workouts#index_description'
   get 'workouts/athlete', to: 'workouts#index_create'
 
   # resources :athletes do
