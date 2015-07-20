@@ -38,14 +38,14 @@ class WorkoutsController < ApplicationController
   end 
 
   def index_category
-    @results = Workout.where(nil) # creates an anonymous scope
-    # binding.pry
+    @results = Workout.where(nil)
+    
     @results = @results.where(running: true) if params[:running].present?
     @results = @results.where(weightlifting: true) if params[:weightlifting].present?
     @results = @results.where(cycling: true) if params[:cycling].present?
     @results = @results.where(circuit_training: true) if params[:circuit_training].present?
     @results = @results.where(swimming: true) if params[:swimming].present?
-    # @results = @results.weightlifting(params[:weightlifting]) if params[:weightlifting].present?
+    
     render 'index_category.json.jbuilder'
   end
 

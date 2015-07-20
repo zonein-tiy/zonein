@@ -56,8 +56,10 @@ Parameters:
 * password(required - must be at least 8 characters)
 
 Result:
-
-```{"username":"jdoe","email":"jdoe@abc.com","password":"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8","access_token":"xxxxx11111"}```
+```
+{
+"username":"jdoe","email":"jdoe@abc.com","password":"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8","access_token":"xxxxx11111"}
+```
 
 ###### Sign In:
 
@@ -110,9 +112,7 @@ Parameters:
 
 Result:
 
-```
-{"username":"jdoe","email":"jdoe@abc.com","password":"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8","access_token":"xxxxx11111","first_name":"Jane","last_name":"Doe","phone_number":"4047706780","home_address":"1 Peachtree Street","city":null,"state":null,"zip":30303,"interests":"rugby, soccer","image_url":"http://i379.photobucket.com/albums/oo239/SyrjisEWR/Others/Randoms/Own%20Cuts/Girl383.jpg"}
-```
+```{"username":"jdoe","email":"jdoe@abc.com","password":"5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8","access_token":"xxxxx11111","first_name":"Jane","last_name":"Doe","phone_number":"4047706780","home_address":"1 Peachtree Street","city":null,"state":null,"zip":30303,"interests":"rugby, soccer","image_url":"http://i379.photobucket.com/albums/oo239/SyrjisEWR/Others/Randoms/Own%20Cuts/Girl383.jpg"}```
 
 ###### Create a Workout:
 
@@ -133,6 +133,26 @@ Parameters:
 * circuit_training
 * cycling
 
+Results:
+
+```{
+  "id": 11,
+  "creator_id": 6,
+  "workout_creator": "jdoe",
+  "name": "deep knee bend",
+  "description": "flexibility",
+  "time": 5,
+  "steps": "3 sets of 15 deep knee bends",
+  "image_url": "http://photos2.demandstudios.com/dm-resize/photos.demandstudios.com%2Fgetty%2Farticle%2F171%2F198%2F78329421_XS.jpg?w=266&h=10000&keep_ratio=1",
+  "video_url": "https://www.youtube.com/watch?v=E5li-45RiNc",
+  "running": null,
+  "weightlifting": null,
+  "swimming": null,
+  "circuit_training": true,
+  "cycling": null
+}
+```
+
 ###### Create a Plan:
 
 POST ```/plans```
@@ -142,12 +162,21 @@ Parameters:
 
 * name
 * description
-* creator_id
-* plan_creator
-* plan_id
 * start_date
 * end_date
 
+Results:
+```{
+  "id": 27,
+  "name": "stretch it out",
+  "description": "improve flexibility",
+  "creator_id": 6,
+  "plan_creator": "jdoe",
+  "start_date": "2015-07-20T04:00:00.000Z",
+  "end_date": "2015-07-25T04:00:00.000Z",
+  "completion": false
+}
+```
 #### UPDATE METHODS
 
 ###### Add Workouts to a Plan:
@@ -202,6 +231,26 @@ GET ```plans/creator```
 ###### Retrieve all Workouts that are in Plans adopted by the signed in Athlete:
 
 GET ```/plans/adopted```
+
+###### Retrieve all Workouts by description type
+
+POST ```/workouts/description```
+
+Parameters: 
+
+* description
+
+###### Retrieve all Workouts by category
+
+POST ```/workouts/category```
+
+Parameters (**one** of the following):
+
+* running
+* weightlifting
+* cycling
+* circuit_training
+* swimming
 
 #### DELETE METHODS:
 
