@@ -19,16 +19,34 @@ class WorkoutsController < ApplicationController
     render 'index.json.jbuilder', status: :created
   end
 
-  # Queries for ALL workouts CREATED by the SIGNED-In
+  # Queries for workouts CREATED by the SIGNED-In
   def index_create
     @workouts = Workout.where(creator_id: current_athlete.id)
     render 'index_create.json.jbuilder', status: :created
   end
 
+  #Queries for workouts based on description type
   def index_description
     choice = params[:description]
     @results = Workout.where(description: choice)
     render 'index_description.json.jbuilder', status: :created
+  end
+
+  def index_category
+    choice = Workout.find_by(params[:category])
+    @results = Workout.where()
+  end 
+
+  def index_category
+    @results = Workout.where(nil) # creates an anonymous scope
+    # binding.pry
+    @results = @results.where(running: true) if params[:running].present?
+    @results = @results.where(weightlifting: true) if params[:weightlifting].present?
+    @results = @results.where(cycling: true) if params[:cycling].present?
+    @results = @results.where(circuit_training: true) if params[:circuit_training].present?
+    @results = @results.where(swimming: true) if params[:swimming].present?
+    # @results = @results.weightlifting(params[:weightlifting]) if params[:weightlifting].present?
+    render 'index_category.json.jbuilder'
   end
 
   def destroy

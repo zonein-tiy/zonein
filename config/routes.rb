@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :athletes
   resources :plans
   resources :workouts, except: [:show]
+  post 'workouts/category', to: 'workouts#index_category'
   post 'workouts/description', to: 'workouts#index_description'
   get 'workouts/athlete', to: 'workouts#index_create'
 
