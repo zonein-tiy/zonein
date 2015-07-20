@@ -43,6 +43,7 @@ class PlansController < ApplicationController
     @athlete_workout =[]
     @plan_workout =[]
     @plan = Plan.find(params[:plan_id])
+
     workout_array.each do |w|
       @plan_workout << PlanWorkout.create(plan_id: @plan.id, workout_id: w[:workout_id])
       w[:workout_dates].each do |dodate|
@@ -61,7 +62,9 @@ class PlansController < ApplicationController
     # binding.pry
     # {"plan_id"=>34, "start_date"=>"2015-08-10T04:00:00.000Z", "end_date"=>"2015-08-11T04:00:00.000Z", "workouts"=>[{"workout_id"=>"1", "workout_dates"=>["2015-08-10T04:00:00.000Z"]}, {"workout_id"=>"2", "workout_dates"=>["2015-08-11T04:00:00.000Z"]}
     workout_array.each do |w|
-     @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: w[:workout_dates], plan_id: @plan.id)
+      w.[:workout_dates].each do |dodate|
+        @athlete_workout << AthleteWorkout.create(athlete_id: current_athlete.id, workout_id: w[:workout_id], do_date: dodate, plan_id: @plan.id)
+        end
     end
     render 'adopt_plan.json.jbuilder'
   end
@@ -77,11 +80,10 @@ class PlansController < ApplicationController
 
   # Updates status of a Workout to completed
   def update_workout_completion
-    athlete_workout_id = params[:athlete_workout_id]
-    @athlete_workout = AthleteWorkout.find(athlete_workout_id)
-    @athlete_workout.update(workout_completion: true)
-    @athlete_workout.update(lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
-    @athlete_workout.update(completion_date: params[:completion_date])
+    athlete_workout = AthleteWorkout.find(params[:athlete_workout_id])
+    @athworkout_updated = athlete_workout.update(workout_completion: true, completion_date: params[:completion_date],lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
+    # @athlete_workout.update(lift_weight: params[:lift_weight], lift_reps: params[:lift_reps], run_distance: params[:run_distance], run_time: params[:run_time])
+    # @athlete_workout.update(completion_date: params[:completion_date])
     render 'update_workout_completion.json.jbuilder', status: :created
   end
 
