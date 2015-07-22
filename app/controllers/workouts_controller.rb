@@ -13,17 +13,19 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  # Queries for ALL workouts CREATED by EVERYBODY
+  # Queries for ALL workouts 
   def index
     @workouts = Workout.all 
     render 'index.json.jbuilder', status: :created
   end
 
-  # Queries for workouts CREATED by the SIGNED-In
+  # Queries for workouts CREATED by the signed-in Athlete
   def index_create
     @workouts = Workout.where(creator_id: current_athlete.id)
     render 'index_create.json.jbuilder', status: :created
   end
+
+
 
   #Queries for workouts based on description type
   def index_description
@@ -32,10 +34,16 @@ class WorkoutsController < ApplicationController
     render 'index_description.json.jbuilder', status: :created
   end
 
-  def index_category
-    choice = Workout.find_by(params[:category])
-    @results = Workout.where()
-  end 
+  def index_creator
+    username = params[:username]
+    # binding.pry
+    @workouts = Workout.where(workout_creator: params[:username])
+    render 'index_creator.json.jbuilder', status: :created
+  end
+  # def index_category
+  #   choice = Workout.find_by(params[:category])
+  #   @results = Workout.where()
+  # end 
 
   def index_category
     @results = Workout.where(nil)
