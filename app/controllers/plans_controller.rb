@@ -3,7 +3,7 @@ class PlansController < ApplicationController
 
   # Queries for ALL plans CREATED by EVERYBOBY
   def index
-    @plans = Plan.joins(:plan_workouts)
+    @plans = Plan.includes(:plan_workouts)
     render 'index.json.jbuilder', status: :created
   end
 
