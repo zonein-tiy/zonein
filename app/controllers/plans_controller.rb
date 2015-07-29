@@ -19,7 +19,7 @@ class PlansController < ApplicationController
   # Queries for plans ADOPTED by the SIGNED-IN Athlete regardless of whom they were created by
   def index_adopted
     @athlete_plans = AthletePlan.where(athlete_id: current_athlete.id, completion: false)
-    binding.pry
+    # binding.pry
     plan_ids = @athlete_plans.map(&:plan_id).uniq
     @athlete_workouts = AthleteWorkout.where(athlete_id: current_athlete.id, plan_id: plan_ids)
     render json: @athlete_workouts, status: :ok
